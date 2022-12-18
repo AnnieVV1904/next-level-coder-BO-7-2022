@@ -5,7 +5,6 @@ from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 
 
-
 class Game:
     def __init__(self):
         pygame.init()
