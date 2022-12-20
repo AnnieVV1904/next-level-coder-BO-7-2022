@@ -1,6 +1,5 @@
 import pygame
-
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS ,CLOUD
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
@@ -17,6 +16,12 @@ class Game:
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 380
+        self.x_pos_cloud = 120
+        self.y_pos_cloud = 180
+        self.x_pos_cloud2 = 450
+        self.y_pos_cloud2 = 250
+        self.x_pos_cloud3 = 700
+        self.y_pos_cloud3 = 170
 
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
@@ -64,11 +69,35 @@ class Game:
         pygame.display.update()
         pygame.display.flip()
 
-    def draw_background(self):
+    def draw_background(self):  
         image_width = BG.get_width()
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+            self.x_pos_bg = 0
+        self.x_pos_bg -= self.game_speed
+
+        image_cloud = CLOUD.get_width()
+        self.screen.blit(CLOUD,((self.x_pos_cloud, self.y_pos_cloud)))
+        self.screen.blit(CLOUD, (image_cloud + self.x_pos_cloud, self.y_pos_cloud))
+        if self.x_pos_cloud <= -image_cloud:
+            self.screen.blit(CLOUD, (image_cloud + self.x_pos_bg, self.y_pos_bg))
+            self.x_pos_bg = 0
+        self.x_pos_bg -= self.game_speed
+
+        image_cloud = CLOUD.get_width()
+        self.screen.blit(CLOUD,((self.x_pos_cloud2, self.y_pos_cloud2)))
+        self.screen.blit(CLOUD, (image_cloud + self.x_pos_cloud2, self.y_pos_cloud2))
+        if self.x_pos_cloud <= -image_cloud:
+            self.screen.blit(CLOUD, (image_cloud + self.x_pos_bg, self.y_pos_bg))
+            self.x_pos_bg = 0
+        self.x_pos_bg -= self.game_speed
+
+        image_cloud = CLOUD.get_width()
+        self.screen.blit(CLOUD,((self.x_pos_cloud3, self.y_pos_cloud3)))
+        self.screen.blit(CLOUD, (image_cloud + self.x_pos_cloud3, self.y_pos_cloud3))
+        if self.x_pos_cloud <= -image_cloud:
+            self.screen.blit(CLOUD, (image_cloud + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
